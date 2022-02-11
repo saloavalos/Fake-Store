@@ -1,0 +1,292 @@
+@use "/src/styles/colors";
+
+body {
+  // to hide the mobile-menu when is out of the limit
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed;
+  height: 60px;
+  z-index: 999;
+  width: 100%;
+  padding: 1rem 1.12rem; // top/bottom  left/right
+  color: colors.$title;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 100ms ease-in;
+
+  @media (min-width: 600px) {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+  @media (min-width: 992px) {
+    // To center it, because it ignores justify-content: space-between;
+    justify-content: center;
+    padding: 1.6rem 2rem;
+  }
+}
+
+.navbar-logo {
+  height: 1.9rem;
+  // So that it adapts and covers all the witdh of its child
+  display: flex;
+
+  @media (min-width: 375px) {
+    height: 2rem;
+  }
+
+  @media (min-width: 992px) {
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .navbar-logo__img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// shadows for navbar onScroll
+.navbar-shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+  // reduce height of navbar onScroll
+  padding: 0.75rem 1.12rem;
+
+  @media (min-width: 992px) {
+    // reduce height of navbar onScroll
+    padding: 0.8rem 2rem;
+  }
+}
+
+.navbar__burger-menu {
+  display: flex;
+  z-index: 99;
+  align-items: flex-end;
+  // height: 1.9rem;
+  height: 1.75rem;
+  flex-direction: column;
+  justify-content: space-between;
+  // it will be hidden for now
+  display: none;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+
+  .burguer-menu__all-lines {
+    height: 3.06px;
+    background: colors.$title;
+    // transition: all 0.2s ease-in;
+    transition: all 200ms ease-in;
+  }
+
+  .burger-menu__short-line {
+    width: 11.21px;
+    border-radius: 25px 0 0 0;
+    // this was the first way I found to replicate the design I wanted
+    // transform: matrix(1, 0, 0, -1, 0, 0);
+  }
+
+  .burger-menu__short-line--x {
+    // this was the first way I found to replicate the design I wanted
+    // transform: matrix(-0.71, 0.71, 0.71, 0.71, -2, 3);
+    transform: rotate(135deg) translate(3px, -1px);
+  }
+
+  .burger-menu__long-line {
+    width: 30.57px;
+    // If I use this line below it seems like this burguer line is higher than the other even though the hight is the same
+    // border-radius: 25px 0 0 0;
+    border-radius: 0 0 0 25px;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+  }
+
+  .burger-menu__long-line--x {
+    transform: matrix(0.71, 0.71, 0.71, -0.71, 0, 0);
+  }
+
+  .burger-menu__median-line {
+    width: 22.42px;
+    border-radius: 25px 0 0 0;
+  }
+
+  .burger-menu__median-line--x {
+    transform: rotate(-45deg) translate(-5px, -13px);
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  padding: 1.12rem 1.12rem 22px 3.95rem; // top right bottom left
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-image: url(../../images/mobile_menu_bg.svg);
+  z-index: 98;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  opacity: 0;
+  // to hide it on the right
+  transform: translateX(100%);
+  transition: all 0.2s ease-in;
+
+  @media (min-width: 600px) {
+    // So that it corresponds to the padding-right of the burguer menu
+    padding: 1.12rem 1.3rem 22px 3.95rem; // top right bottom left
+  }
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: unset;
+    padding: unset;
+    opacity: 1;
+    transform: translateX(0%);
+    max-width: 86rem;
+    // so that when the width of the page is resized, we do not see that the menu comes from the right, that the navbar only appears like this without animation
+    transition: none;
+    // remove the white bg from the mobile menu
+    background-image: none;
+  }
+}
+
+.mobile-menu--active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.languages-and-networks-conatiner {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu {
+  margin-top: 3.75rem;
+  margin-bottom: 1.4rem;
+  text-align: end;
+
+  @media (min-width: 992px) {
+    margin: unset;
+    display: flex;
+  }
+}
+
+.navbar-menu li {
+  list-style: none;
+  padding: 0.625rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @media (min-width: 375px) {
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 992px) {
+    padding: unset;
+    // margin-right: 1.6rem;
+    font-size: 1.3rem;
+
+    width: 12rem;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 1.4rem;
+    // margin-right: 2.2rem;
+  }
+}
+
+.navbar-menu__item__active {
+  width: 12px;
+  height: 12px;
+  border-radius: 7.5px;
+  background-color: colors.$primary;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+  opacity: 0;
+  // I add a transition because it is needed on hovering above 992px
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-menu li a {
+  color: colors.$title;
+  text-decoration: none;
+  // I add a transition because it is needed on hovering above 992px
+  transition: all 0.2s ease-in;
+}
+
+.navbar-menu li:hover a {
+  @media (min-width: 992px) {
+    transform: translate(20px);
+  }
+}
+
+// when I hover the <li> the second class is added with modified opacity
+// to show that the section is selected
+.navbar-menu li:hover .navbar-menu__item__active {
+  opacity: 1;
+}
+
+.navbar__my-networks {
+  // So that this div can fit the height of the content within this
+  display: flex;
+}
+
+.navbar__my-networks a {
+  // So that the "a" tag can fit the height of the img within this
+  display: inline-flex;
+}
+
+// add space between the 2 icons
+// margin added to the img fisrt "a" link
+.navbar__my-networks a:nth-child(1) img {
+  margin-right: 0.5rem;
+}
+
+// size of icons
+.navbar__my-networks a img {
+  width: 2.4rem;
+}
+
+.dim {
+  // while development will be display: none;
+  // display: none;
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+  // I put it behind everything when is hidden, because when I'm debugging it gets in the way
+  visibility: hidden;
+  height: 100%;
+  left: 0px;
+  top: 0;
+  background: #000000;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.dim--active {
+  // display: block;
+  opacity: 0.7;
+  visibility: visible;
+
+  // I hide the menu with code when ir >= 992 but here I remove any animation
+  @media (min-width: 992px) {
+    // I remove any transition, so that the dim bg disappears immediately
+    transition: none;
+  }
+}
