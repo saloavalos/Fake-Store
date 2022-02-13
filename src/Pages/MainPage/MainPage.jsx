@@ -50,9 +50,9 @@ export const MainPage = () => {
 
       <div className="main-page-c__main-c">
         <h3 className="products-c__title">Our products</h3>
-        <hr />
+        <div className="dividing-line"></div>
         <div className="main-c__products-c">
-          {/* TODO - generate products with map */}
+          {/* products generated with map */}
           {products.map((eachProduct, index) => (
             <div key={eachProduct.id} className="products-c__each-product-c">
               <div className="each-product-c__image-c">
@@ -61,9 +61,9 @@ export const MainPage = () => {
                 </a>
               </div>
               <div className="each-product-c__main-text-c">
-                <p>${eachProduct.price}</p>
-                <a href="">
-                  <p>{eachProduct.title}</p>
+                <p className="main-text-c__price">${eachProduct.price}</p>
+                <a className="main-text-c__title-link" href="">
+                  <p className="main-text-c__title">{eachProduct.title}</p>
                 </a>
               </div>
             </div>
