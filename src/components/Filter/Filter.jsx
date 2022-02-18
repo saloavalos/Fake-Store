@@ -48,9 +48,12 @@ export function FilterMobile({
           </svg>
         </div>
 
-        <a className="closeButtonPrimary" onClick={closeFilterPopupHandler}>
-          x
-        </a>
+        <svg
+          className="all-svg-icons close-icon"
+          onClick={closeFilterPopupHandler}
+        >
+          <use href={sprite + "#close"} />
+        </svg>
       </div>
 
       <div className="filter-mobile-c__each-filter-c">
@@ -85,7 +88,9 @@ export function FilterMobile({
 
       <div className="dividing-line"></div>
       <a className="closeButtonSecondary" onClick={closeFilterPopupHandler}>
-        x
+        <svg className="all-svg-icons close-icon">
+          <use href={sprite + "#close"} />
+        </svg>
       </a>
     </div>
   );

@@ -69,11 +69,13 @@ export const MainPage = ({ screenWidth }) => {
         <div className="main-page-c__main-c">
           <div className="main-c__title-c">
             <h3 className="title-c__title">Our products</h3>
-            {/* <a href="/" className="products-c-mobile"> */}
-            <svg className="all-svg-icons" onClick={showFilterHandler}>
-              <use href={sprite + "#settings"} />
-            </svg>
-            {/* </a> */}
+
+            <div className="title-c__filter-c">
+              <p>Filter</p>
+              <svg className="all-svg-icons" onClick={showFilterHandler}>
+                <use href={sprite + "#settings"} />
+              </svg>
+            </div>
           </div>
 
           <div className="dividing-line"></div>

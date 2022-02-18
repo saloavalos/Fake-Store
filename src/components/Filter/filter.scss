@@ -76,12 +76,6 @@
   border: 2px solid colors.$title;
 }
 
-.closeButtonPrimary {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: colors.$title;
-}
-
 .closeButtonSecondary {
   background-color: colors.$primary;
   display: flex;
@@ -93,4 +87,9 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: colors.$title;
+}
+
+.close-icon {
+  width: 18px;
+  height: 18px;
 }

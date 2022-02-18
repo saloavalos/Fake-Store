@@ -17,8 +17,16 @@
 }
 
 .title-c__title {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.3rem;
+}
+
+.title-c__filter-c {
+  display: flex;
+
+  p {
+    margin-right: 0.5rem;
+  }
 }
 
 .dividing-line {
