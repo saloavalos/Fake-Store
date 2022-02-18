@@ -1,26 +1,24 @@
 @use "/src/styles/colors";
 
 .main-page-c {
-  padding: 60px 0.5rem 0; // top edges bottom
-  background-color: colors.$gray;
-}
-
-.main-page-c__filters-c {
-  // TODO - hide it for now
-  display: none;
+  padding: 60px 1rem 0; // top edges bottom
 }
 
 .main-page-c__main-c {
   display: flex;
   flex-wrap: wrap;
-  padding: 0.3rem;
   flex-direction: column;
 }
 
-.products-c__title {
+.main-c__title-c {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+}
+
+.title-c__title {
   font-weight: 700;
   font-size: 1.3rem;
-  margin-top: 0.8rem;
 }
 
 .dividing-line {
@@ -40,26 +38,27 @@
 .products-c__each-product-c {
   display: flex;
   flex-direction: column;
-  width: 9.5rem;
+  width: 9.4rem;
   margin: 0 0.4rem 0.8rem; // top edges bottom
   background-color: white;
   border-radius: 8px;
 }
 
 .each-product-c__image-c {
-  height: 13rem;
+  height: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.6rem;
   padding: 8px;
+  overflow: hidden;
 
   a {
     img {
       object-fit: cover;
       width: 100%;
       // To have all the images of the same size
-      max-height: 10rem;
+      max-height: 9rem;
     }
   }
 }

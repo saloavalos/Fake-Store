@@ -1,0 +1,96 @@
+@use "/src/styles/colors";
+
+.filter-mobile-c {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1.3rem 1.4rem; // top/bottom edges
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // Hides it down
+  transform: translateY(100%);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 200ms ease-in;
+}
+
+.filter-mobile-c.filter-mobile-active {
+  visibility: visible;
+  opacity: 1;
+  // Show it from bottom to top
+  transform: translateY(0%);
+}
+
+.filter-mobile-c__header-c {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.filter-mobile-c__each-filter-c {
+  width: 100%;
+}
+
+.header-c__title-c {
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-right: 0.5rem;
+    font-weight: 700;
+    font-size: 1.7rem;
+  }
+}
+
+.each-filter-c__title {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+.categories-c__each-category-c {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: colors.$gray;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  justify-content: center;
+  // We add a invisible border so that when
+  // we show border of color is does not resize
+  border: 2px solid transparent;
+}
+
+// css rule applied when the div has these two classes
+.categories-c__each-category-c.category-selected {
+  border: 2px solid colors.$title;
+}
+
+.closeButtonPrimary {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: colors.$title;
+}
+
+.closeButtonSecondary {
+  background-color: colors.$primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: colors.$title;
+}

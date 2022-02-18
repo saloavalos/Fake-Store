@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./navbar.scss";
+// get whole sprite reference then we use the svg we need
+import sprite from "/sprite.svg";
 
 const Navbar = ({ screenWidth }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -49,8 +51,22 @@ const Navbar = ({ screenWidth }) => {
     <nav className={isScrolledDown ? "navbar-shadow" : ""}>
       <div className="navbar-logo">
         <a href="/">
-          {/* TODO - add using svg sprite src */}
-          <img className="navbar-logo__img" src={"navbarLogo"} alt="Logo" />
+          <svg>
+            <use href={sprite + "#logo"} />
+          </svg>
+        </a>
+      </div>
+
+      <div className="navbar-sections">
+        <a href="/">
+          <svg className="all-svg-icons">
+            <use href={sprite + "#search"} />
+          </svg>
+        </a>
+        <a href="/">
+          <svg className="all-svg-icons">
+            <use href={sprite + "#shopping-cart"} />
+          </svg>
         </a>
       </div>
 

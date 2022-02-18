@@ -25,7 +25,7 @@ function App() {
   return (
     <div>
       <Navbar screenWidth={screenWidth} />
-      <MainPage />
+      <MainPage screenWidth={screenWidth} />
       {/* TODO - add footer */}
     </div>
   );
