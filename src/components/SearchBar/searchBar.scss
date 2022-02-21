@@ -1,0 +1,57 @@
+@use "/src/styles/colors";
+
+.search-bar-c {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // Hides it down
+  transform: translateY(100%);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 200ms ease-in;
+}
+
+.search-bar-active {
+  visibility: visible;
+  opacity: 1;
+  // Show it from bottom to top
+  transform: translateY(0%);
+  // to cover and don't see division line behind
+  z-index: 99;
+}
+
+.dim-search-bar {
+  background-color: rgba(167, 167, 167, 0.644);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.search-bar-input-and-close-c {
+  padding: 5rem 1rem 0; // top edges bottom
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-bar-input-c {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+
+  input {
+    width: 100%;
+    font-size: 1.3rem;
+    border: none;
+    // Removes border that appears when the input is focused
+    outline: none;
+  }
+}

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { CloseButton } from "../Buttons/Buttons";
 import "./filter.scss";
 import sprite from "/sprite.svg";
 
@@ -87,11 +88,12 @@ export function FilterMobile({
       </div>
 
       <div className="dividing-line"></div>
-      <a className="closeButtonSecondary" onClick={closeFilterPopupHandler}>
+      {/* <a className="closeButtonSecondary" onClick={closeFilterPopupHandler}>
         <svg className="all-svg-icons close-icon">
           <use href={sprite + "#close"} />
         </svg>
-      </a>
+      </a> */}
+      <CloseButton onClick={closeFilterPopupHandler} />
     </div>
   );
 }

@@ -7,6 +7,6 @@ The design of the entire project takes inspiration from many websites but primar
 ## Technologies used
 
 • HTML
-• Sass
+• SASS
 • JavaScript
 • React

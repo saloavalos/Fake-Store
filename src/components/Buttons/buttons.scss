@@ -1,0 +1,14 @@
+@use "/src/styles/colors";
+
+.close-button {
+  background-color: colors.$primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: colors.$title;
+}

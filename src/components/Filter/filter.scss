@@ -17,7 +17,7 @@
   transition: all 200ms ease-in;
 }
 
-.filter-mobile-c.filter-mobile-active {
+.filter-mobile-active {
   visibility: visible;
   opacity: 1;
   // Show it from bottom to top
@@ -74,22 +74,4 @@
 // css rule applied when the div has these two classes
 .categories-c__each-category-c.category-selected {
   border: 2px solid colors.$title;
-}
-
-.closeButtonSecondary {
-  background-color: colors.$primary;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: colors.$title;
-}
-
-.close-icon {
-  width: 18px;
-  height: 18px;
 }
