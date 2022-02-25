@@ -17,7 +17,10 @@ export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
       <div className="search-bar-input-and-close-c">
         <div className="search-bar-input-c">
           <input placeholder="Search" type="text" />
-          <svg className="all-svg-icons">
+          <svg
+            className="all-svg-icons"
+            // onClick={}
+          >
             <use href={sprite + "#search"} />
           </svg>
         </div>
