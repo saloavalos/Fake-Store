@@ -2,38 +2,48 @@ import { useEffect } from "react";
 import { CloseButton } from "../Buttons/Buttons";
 import "./filter.scss";
 import sprite from "/sprite.svg";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchWord } from "../../redux/productsSlice";
 
 export function FilterMobile({
   setIsFilterActive,
   isFilterActive,
   setFilteredProducts,
   categories,
-  products,
+  // products,
   categorySelected,
   setCategorySelected,
 }) {
+  const {
+    searchWord,
+    pending: isLoading,
+    error,
+  } = useSelector((state) => state.products);
+  // to trigger functions/actions from any reducer
+  const dispatch = useDispatch();
+
   const closeFilterPopupHandler = () => {
     setIsFilterActive(false);
   };
 
   const resetFiltersHandler = () => {
     setCategorySelected(categories[0]);
-    setFilteredProducts(products);
+    // reset global state "searchWord" to default
+    dispatch(setSearchWord("all"));
     closeFilterPopupHandler();
   };
 
-  useEffect(() => {
-    if (categorySelected === "All") {
-      setFilteredProducts(products);
-      return;
-    }
+  // I have an useEffect that in MainPage to listen to any update
+  // of the global state "searchWord"
+  const handleSearchProducts = (category) => {
+    // In a normal website I should Redirect to Resulst page,
+    // where I filter the products and show them.
+    // but in this project I was asked to use "Main page" as if it was a "Results page"
 
-    // We loop through all the products and store it in this array the products that match
-    const filtered = products.filter(
-      (eachProduct) => eachProduct.category.includes(categorySelected) // I have to ommit {} else it won't return anything
-    );
-    setFilteredProducts(filtered);
-  }, [categorySelected]);
+    // Update global state "searchWord"
+    dispatch(setSearchWord(category));
+  };
 
   return (
     <div
@@ -74,10 +84,10 @@ export function FilterMobile({
               key={eachCategory}
               // Add css class if this category is selected
               className={`categories-c__each-category-c ${
-                categorySelected === eachCategory ? "category-selected" : ""
+                searchWord === eachCategory ? "category-selected" : ""
               }`}
               onClick={() => [
-                setCategorySelected(eachCategory),
+                handleSearchProducts(eachCategory),
                 closeFilterPopupHandler(),
               ]}
             >

@@ -10,3 +10,8 @@ The design of the entire project takes inspiration from many websites but primar
 • SASS
 • JavaScript
 • React
+
+#
+
+**Note:**
+when developing web pages I always start with the mobile version and once all its functionalities are ready, I continue with the remaining versions that would be tablet and laptop.

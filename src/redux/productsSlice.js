@@ -5,6 +5,7 @@ const productsSlice = createSlice({
   // this is the data that is loaded in the first render
   initialState: {
     productsList: [],
+    searchWord: "all", // This can be the name of a category of products or the name of a product
     pending: null,
     error: null,
   },
@@ -23,7 +24,9 @@ const productsSlice = createSlice({
       state.error = false;
       state.pending = false;
     },
-    setFilteredProducts: (state) => (state = {}),
+    setSearchWord: (state, action) => {
+      state.searchWord = action.payload;
+    },
   },
 });
 
@@ -31,7 +34,7 @@ export const {
   setAllProductsStart,
   setAllProductsSuccess,
   setAllProductsError,
-  setFilteredProducts,
+  setSearchWord,
 } = productsSlice.actions;
 
 // Export it to use it in store.js

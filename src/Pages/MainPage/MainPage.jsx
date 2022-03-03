@@ -11,10 +11,13 @@ export const MainPage = ({ screenWidth }) => {
   // to get data using redux
   // we destructure the whole state which name is "products"
   // I can rename the default names of the variables for example:
-  // const { productsList: allPproducts, pending, error } = useSelector(
-  const { productsList, pending, error } = useSelector(
-    (state) => state.products
-  );
+  // const { productsList: allProducts, pending, error } = useSelector(
+  const {
+    productsList,
+    searchWord,
+    pending: isLoading,
+    error,
+  } = useSelector((state) => state.products);
   // to trigger functions/actions from any reducer
   const dispatch = useDispatch();
 
@@ -24,20 +27,51 @@ export const MainPage = ({ screenWidth }) => {
   const [categories, setCategories] = useState([]);
   const [categorySelected, setCategorySelected] = useState("All");
 
-  // We check if all products state had changes, because at the beginning is empty
   useEffect(() => {
-    // We keep a original copy of all the products to use when the selected category is "All"
-    setProducts(productsList);
-    // and this filtered copy is used when we want to display products from any other category but "All"
-    setFilteredProducts(productsList);
+    // Fetch all products from api, to get the latest data
+    fetchAllProducts(dispatch);
+
+    // Cleanup
+    return () => {
+      // to fix that when the data fetched and store in filteredProducts it still
+      // show the previous data for a second and then shows the new one
+      setFilteredProducts([]);
+    };
+  }, [searchWord]);
+
+  // We listen to any change of productsList , because at the beginning is empty
+  useEffect(() => {
+    // Skip filter and show them all
+    if (searchWord === "all") {
+      setFilteredProducts(productsList);
+      return;
+    }
+
+    // This values below are the keys that I need from
+    // the json that contains the info of all the products
+    const keys = ["category", "title"];
+
+    const filtered = productsList.filter((eachProduct) => {
+      return keys.some((eachKey) =>
+        eachProduct[eachKey].toLowerCase().includes(searchWord)
+      );
+      // I was using the method below but, using an array makes it more compact
+      // return (
+      //   eachProduct.category.includes(searchWord) ||
+      //   eachProduct.title.toLowerCase().includes(searchWord)
+      // );
+    });
+
+    setFilteredProducts(filtered);
+    console.log(filtered);
+    // return () => {
+    //   // cleanup
+    //   filtered = [...[]];
+    // };
   }, [productsList]);
 
   useEffect(() => {
-    // Triggers this function that fetches and uses redux and
-    // only needs to be excuted once when this component renders
-    fetchAllProducts(dispatch);
-
-    // commented because it is now done usind redux
+    // commented because it is now done using redux
     // fetch("https://fakestoreapi.com/products")
     //   .then((res) => res.json())
     //   .then((json) => {
@@ -54,7 +88,8 @@ export const MainPage = ({ screenWidth }) => {
       .then((res) => res.json())
       .then((json) => {
         // add default "All" category to categories
-        setCategories(["All", ...json]);
+        setCategories(["all", ...json]);
+        // console.log(categories);
       });
   }, []);
 
@@ -89,7 +124,7 @@ export const MainPage = ({ screenWidth }) => {
         setCategorySelected={setCategorySelected}
         categorySelected={categorySelected}
         setFilteredProducts={setFilteredProducts}
-        products={products}
+        // products={products}
       />
       {/* ) : (
         ""
@@ -111,21 +146,29 @@ export const MainPage = ({ screenWidth }) => {
 
           <div className="dividing-line"></div>
           <div className="main-c__products-c">
-            {filteredProducts.map((eachProduct, index) => (
-              <div key={eachProduct.id} className="products-c__each-product-c">
-                <div className="each-product-c__image-c">
-                  <a href="">
-                    <img src={eachProduct.image} alt="Product image" />
-                  </a>
+            {!isLoading ? (
+              filteredProducts.map((eachProduct) => (
+                <div
+                  key={eachProduct.id}
+                  className="products-c__each-product-c"
+                >
+                  <div className="each-product-c__image-c">
+                    <a href="">
+                      <img src={eachProduct.image} alt="Product image" />
+                    </a>
+                  </div>
+                  <div className="each-product-c__main-text-c">
+                    <p className="main-text-c__price">${eachProduct.price}</p>
+                    <a className="main-text-c__title-link" href="">
+                      <p className="main-text-c__title">{eachProduct.title}</p>
+                    </a>
+                  </div>
                 </div>
-                <div className="each-product-c__main-text-c">
-                  <p className="main-text-c__price">${eachProduct.price}</p>
-                  <a className="main-text-c__title-link" href="">
-                    <p className="main-text-c__title">{eachProduct.title}</p>
-                  </a>
-                </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              // TODO - Add a more complex animation
+              <div>Loading ...</div>
+            )}
           </div>
         </div>
       </div>
