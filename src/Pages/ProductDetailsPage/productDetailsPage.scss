@@ -5,6 +5,7 @@
 }
 
 .products-details-c__image-c {
+  min-height: 10rem;
   max-height: 13rem;
   display: flex;
   justify-content: center;
@@ -22,6 +23,8 @@
 
 .product-details-main-info-c {
   margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-details-title {
@@ -40,8 +43,9 @@
 }
 
 .product-details-ratings-c {
+  display: flex;
   // to expand to only the width needed not 100%
-  display: inline-flex;
+  flex-wrap: wrap;
   margin-bottom: 0.5rem;
   align-items: center;
 
@@ -87,6 +91,7 @@
 .product-details__qty-input-c {
   display: inline-flex;
   margin-right: 1.5rem;
+  margin-bottom: 1rem;
   background-color: white;
   // Has to be the same radius in the buttons inside this div
   border-radius: 5px;
@@ -120,3 +125,62 @@
   font-size: 1.1rem;
   color: colors.$subtitle;
 }
+
+// --- skeleton values - Begining
+// css that is shared through many elements
+.skeleton {
+  background-color: colors.$gray;
+  animation: skeleton 1s ease infinite alternate;
+}
+
+// complete text
+.skeleton-text {
+  width: 100%;
+  height: 1.75rem;
+  border-radius: 0.2rem;
+  background-color: colors.$deeperGray;
+  margin-bottom: 0.5rem;
+}
+
+// large text
+// Affects the ones that use .skeleton-text and .sm in the same element
+.skeleton-text.l {
+  width: 80%;
+}
+
+// medium text
+// Affects the ones that use .skeleton-text and .sm in the same element
+.skeleton-text.m {
+  width: 50%;
+}
+
+// small text
+// Affects the ones that use .skeleton-text and .sm in the same element
+.skeleton-text.sm {
+  width: 33%;
+  // height: 1.5rem;
+}
+
+.skeleton-text.inline {
+  display: inline-flex;
+  margin-right: 0.8rem;
+}
+
+.skeleton-products-details-c__image-c {
+  height: 10rem;
+  margin-bottom: 1.5rem;
+  background-color: colors.$deeperGray;
+  border-radius: 8px;
+}
+
+.skeleton-paragraph-c {
+  margin-top: 2rem;
+}
+
+@keyframes skeleton {
+  // I suppose it means from opacity 1 to .5
+  to {
+    opacity: 0.5;
+  }
+}
+// --- skeleton values - end
