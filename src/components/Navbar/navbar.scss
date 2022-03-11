@@ -6,7 +6,9 @@ body {
 }
 
 nav {
-  position: fixed;
+  // top and position are required so that sticky behavior works properly
+  top: 0;
+  position: sticky;
   height: 60px;
   z-index: 999;
   width: 100%;
@@ -56,12 +58,6 @@ nav {
   a {
     margin-left: 0.8rem;
   }
-}
-
-.all-svg-icons {
-  height: 24px;
-  width: 24px;
-  display: flex;
 }
 
 // shadows for navbar onScroll

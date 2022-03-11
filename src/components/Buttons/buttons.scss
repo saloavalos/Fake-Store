@@ -12,3 +12,20 @@
   font-weight: bold;
   color: colors.$title;
 }
+
+.btn-global {
+  svg {
+    margin-right: 0.6rem;
+    stroke: white;
+  }
+
+  background-color: colors.$primary;
+  display: inline-flex;
+  align-items: center;
+  // justify-content: center;
+  padding: 0.6rem 1.3rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}

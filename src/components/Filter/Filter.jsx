@@ -122,7 +122,7 @@ export function FilterDesktop() {
         </a>
       </div>
 
-      {/* TODO - egnerate each filter with map */}
+      {/* TODO - generate each filter with map */}
       <div className="filters-c__each-filter-c">
         <div className="each-filter-c__title">
           <p>Categories</p>

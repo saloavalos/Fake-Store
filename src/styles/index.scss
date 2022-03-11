@@ -35,6 +35,18 @@ a {
   text-decoration: none;
 }
 
+.all-svg-icons {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  stroke: colors.$title;
+  fill: colors.$title;
+
+  &:hover {
+    stroke: colors.$primary;
+  }
+}
+
 .close-icon {
   width: 18px;
   height: 18px;

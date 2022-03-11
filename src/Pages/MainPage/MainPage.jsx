@@ -6,6 +6,7 @@ import { FilterDesktop } from "../../components/Filter/Filter";
 // Redux imports
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../redux/apiCalls";
+import { Link } from "react-router-dom";
 
 export const MainPage = ({ screenWidth }) => {
   // to get data using redux
@@ -153,15 +154,19 @@ export const MainPage = ({ screenWidth }) => {
                   className="products-c__each-product-c"
                 >
                   <div className="each-product-c__image-c">
-                    <a href="">
+                    <Link to={`/products/${eachProduct.id}`}>
                       <img src={eachProduct.image} alt="Product image" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="each-product-c__main-text-c">
                     <p className="main-text-c__price">${eachProduct.price}</p>
-                    <a className="main-text-c__title-link" href="">
+
+                    <Link
+                      className="main-text-c__title-link"
+                      to={`/products/${eachProduct.id}`}
+                    >
                       <p className="main-text-c__title">{eachProduct.title}</p>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))

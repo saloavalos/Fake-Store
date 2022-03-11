@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { MainPage } from "./Pages/MainPage/MainPage";
+import { Routes, Route } from "react-router-dom";
+import { Error404Page } from "./Pages/Error404Page/Error404Page";
+import { ProductDetailsPage } from "./Pages/ProductDetailsPage/ProductDetailsPage";
 
 function App() {
   // I will pass this value to the navbar to hide or show mobile menu
@@ -25,7 +28,24 @@ function App() {
   return (
     <>
       <Navbar screenWidth={screenWidth} />
-      <MainPage screenWidth={screenWidth} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <MainPage screenWidth={screenWidth} />
+            </>
+          }
+        />
+        <Route
+          //:name can be named anyway, but later using params
+          // has to correspond the name of the variable
+          path="/products/:productName"
+          element={<ProductDetailsPage />}
+        />
+        <Route path="*" element={<Error404Page />} />
+      </Routes>
+
       {/* TODO - add footer */}
     </>
   );
