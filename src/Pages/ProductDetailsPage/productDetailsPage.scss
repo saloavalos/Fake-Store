@@ -6,18 +6,21 @@
 
 .products-details-c__image-c {
   min-height: 10rem;
-  max-height: 13rem;
+  max-height: 11rem;
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   background-color: white;
   border-radius: 8px;
   padding: 0.8rem 0.5rem;
 
   img {
     width: 100%;
-    // height: 100%;
+    // so that the image does not strecth too much
+    max-width: 10rem;
     object-fit: contain;
+    // To have all the images of the same size
+    max-height: 9rem;
   }
 }
 
@@ -60,7 +63,7 @@
   align-items: center;
   border: 1px colors.$subtitle solid;
   border-radius: 15px;
-  padding: 0.4rem 0.6rem;
+  padding: 0.2rem 0.6rem;
 
   svg {
     margin-right: 0.4rem;

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { FilterMobile } from "/src/components/Filter/Filter";
+import { Filter } from "/src/components/Filter/Filter";
 import "./MainPage.scss";
 import sprite from "/sprite.svg";
-import { FilterDesktop } from "../../components/Filter/Filter";
 // Redux imports
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../redux/apiCalls";
@@ -111,53 +110,50 @@ export const MainPage = ({ screenWidth }) => {
 
   return (
     <>
-      {/* {!pending
-        ? console.log(
-            "Products fetched with redux: \n" + JSON.stringify(products2)
-          )
-        : ""} */}
-      {/* the popup needs to be here to start its position from top left corner */}
-      {/* {isFilterActive ? ( */}
-      <FilterMobile
-        isFilterActive={isFilterActive}
-        setIsFilterActive={setIsFilterActive}
-        categories={categories}
-        setCategorySelected={setCategorySelected}
-        categorySelected={categorySelected}
-        setFilteredProducts={setFilteredProducts}
-        // products={products}
-      />
-      {/* ) : (
-        ""
-      )} */}
       <div className="main-page-c">
-        {screenWidth >= 920 ? <FilterDesktop /> : ""}
-
-        <div className="main-page-c__main-c">
-          <div className="main-c__title-c">
-            <h3 className="title-c__title">Our products</h3>
-
-            <div className="title-c__filter-c">
-              <p>Filter</p>
-              <svg className="all-svg-icons" onClick={showFilterHandler}>
-                <use href={sprite + "#settings"} />
-              </svg>
-            </div>
-          </div>
-
-          <div className="dividing-line"></div>
+        <div className="main-c__filter-and-products">
+          <Filter
+            screenWidth={screenWidth}
+            isFilterActive={isFilterActive}
+            setIsFilterActive={setIsFilterActive}
+            categories={categories}
+            setCategorySelected={setCategorySelected}
+          />
           <div className="main-c__products-c">
+            <div className="main-page-title-and-divisor-c">
+              <div className="main-page-c__title-c">
+                <h3 className="title-c__title">Our products</h3>
+                {
+                  // If the we are in mobile or tablet we se Filter button on the right
+                  screenWidth < 920 ? (
+                    <div className="title-c__filter-c">
+                      <p>Filter</p>
+                      <svg
+                        className="all-svg-icons"
+                        onClick={showFilterHandler}
+                      >
+                        <use href={sprite + "#settings"} />
+                      </svg>
+                    </div>
+                  ) : (
+                    ""
+                  )
+                }
+              </div>
+              <div className="dividing-line"></div>
+            </div>
+
             {!isLoading ? (
               filteredProducts.map((eachProduct) => (
                 <div
                   key={eachProduct.id}
                   className="products-c__each-product-c"
                 >
-                  <div className="each-product-c__image-c">
-                    <Link to={`/products/${eachProduct.id}`}>
+                  <Link to={`/products/${eachProduct.id}`}>
+                    <div className="each-product-c__image-c">
                       <img src={eachProduct.image} alt="Product image" />
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                   <div className="each-product-c__main-text-c">
                     <p className="main-text-c__price">${eachProduct.price}</p>
 

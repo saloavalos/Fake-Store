@@ -46,6 +46,14 @@ export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
     handleHideSearchBar();
   };
 
+  // To perfom a search action also with Enter and
+  // not only with a click on the search bar icon
+  const handleEnterSerchBar = (event) => {
+    if (event.key === "Enter") {
+      handleSearchProducts();
+    }
+  };
+
   return (
     <div
       className={`search-bar-c ${isSearchBarActive ? "search-bar-active" : ""}`}
@@ -58,6 +66,7 @@ export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
             placeholder="Search"
             type="text"
             onChange={handleGetSearchWord}
+            onKeyPress={handleEnterSerchBar}
           />
           <svg className="all-svg-icons" onClick={handleSearchProducts}>
             <use href={sprite + "#search"} />

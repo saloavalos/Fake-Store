@@ -37,6 +37,9 @@ export const ProductDetailsPage = () => {
   useEffect(() => {
     console.log(product);
 
+    // Reset scroll position on change of Routes
+    window.scrollTo(0, 0);
+
     // cleanup
     // return () => {
     // };

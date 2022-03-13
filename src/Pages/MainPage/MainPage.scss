@@ -1,24 +1,28 @@
 @use "/src/styles/colors";
 
 .main-page-c {
-  padding: 3px 1rem 0; // top edges bottom
-}
-
-.main-page-c__main-c {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  justify-content: center;
 }
 
-.main-c__title-c {
+.main-page-title-and-divisor-c {
+  width: 100%;
+  padding: 0 1rem; // top edges
+}
+
+.main-page-c__title-c {
   display: flex;
   justify-content: space-between;
   margin-top: 0.8rem;
+  width: 100%;
 }
 
 .title-c__title {
   font-weight: 500;
   font-size: 1.3rem;
+  // I like to use this instead of the other text cursor
+  cursor: default;
 }
 
 .title-c__filter-c {
@@ -37,16 +41,30 @@
   margin: 1rem 0 1.5rem; // top edges bottom
 }
 
+.main-c__filter-and-products {
+  display: inline-flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 85rem;
+
+  @media (min-width: 920px) {
+    padding: 0 1.5rem;
+  }
+}
+
 .main-c__products-c {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  align-content: flex-start;
 }
 
 .products-c__each-product-c {
   display: flex;
   flex-direction: column;
-  width: 9.4rem;
+  width: 45%;
+  max-width: 11rem;
   margin: 0 0.4rem 0.8rem; // top edges bottom
   background-color: white;
   border-radius: 8px;
@@ -61,13 +79,11 @@
   padding: 8px;
   overflow: hidden;
 
-  a {
-    img {
-      object-fit: cover;
-      width: 100%;
-      // To have all the images of the same size
-      max-height: 9rem;
-    }
+  img {
+    object-fit: contain;
+    width: 100%;
+    // To have all the images of the same size
+    max-height: 9rem;
   }
 }
 

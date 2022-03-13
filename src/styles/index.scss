@@ -26,6 +26,7 @@ input,
 textarea,
 button,
 select,
+svg,
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -33,14 +34,16 @@ a {
 // remove underline effect of "a" tags
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .all-svg-icons {
   height: 24px;
   width: 24px;
   display: flex;
-  stroke: colors.$title;
+  // stroke: colors.$title;
   fill: colors.$title;
+  cursor: pointer;
 
   &:hover {
     stroke: colors.$primary;

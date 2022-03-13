@@ -57,41 +57,37 @@ const Navbar = ({ screenWidth }) => {
     <>
       {/* // if we scroll down we add a shadow to navbar */}
       <nav className={isScrolledDown ? "navbar-shadow" : ""}>
-        <div className="navbar-logo">
-          <a href="/">
-            <svg>
-              <use href={sprite + "#logo"} />
+        <div className="navbar-logo-and-sections-c">
+          <div className="navbar-logo">
+            <a href="/">
+              <svg>
+                <use href={sprite + "#logo"} />
+              </svg>
+            </a>
+          </div>
+
+          <div className="navbar-sections">
+            {/* TODO - might look good if I change color of svg when the search bar is active */}
+            <svg className="all-svg-icons" onClick={showSearcBarHandler}>
+              <use href={sprite + "#search"} />
             </svg>
-          </a>
+            <a href="/">
+              <svg className="all-svg-icons">
+                <use href={sprite + "#shopping-cart"} />
+              </svg>
+            </a>
+          </div>
         </div>
 
-        <div className="navbar-sections">
-          {/* TODO - change color of svg when the search bar is active */}
-          <svg className="all-svg-icons" onClick={showSearcBarHandler}>
-            <use href={sprite + "#search"} />
-          </svg>
-          <a href="/">
-            <svg className="all-svg-icons">
-              <use href={sprite + "#shopping-cart"} />
-            </svg>
-          </a>
-        </div>
-
-        {/* This mobile menu was not required so we comment it */}
+        {/* This mobile menu was not required in this project so we comment it */}
         {/* <div className={`mobile-menu ${showMenu ? "mobile-menu--active" : ""}`}>
-        <ul className="navbar-menu">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <div className="navbar-menu__item__active"></div> */}
-        {/* Had to use this github library because with Hashrouter
-               I cant use regular anchor tags to scroll to a section of the page */}
-        {/* <HashLink onClick={handleBurguerClick} to={item.url}>
-                {item.title}
-              </HashLink>
+          <ul className="navbar-menu">
+            <li>
+              <div className="navbar-menu__item__active"></div>
+              <a onClick={handleBurguerClick}>dfdfdf</a>
             </li>
-          ))}
-        </ul>
-      </div> */}
+          </ul>
+        </div> */}
 
         <div className="navbar__burger-menu" onClick={handleBurguerClick}>
           <div

@@ -6,15 +6,13 @@ import sprite from "/sprite.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchWord } from "../../redux/productsSlice";
 
-export function FilterMobile({
-  setIsFilterActive,
+export const Filter = ({
+  screenWidth,
   isFilterActive,
-  setFilteredProducts,
+  setIsFilterActive,
   categories,
-  // products,
-  categorySelected,
   setCategorySelected,
-}) {
+}) => {
   const {
     searchWord,
     pending: isLoading,
@@ -47,10 +45,20 @@ export function FilterMobile({
 
   return (
     <div
-      className={`filter-mobile-c ${
-        isFilterActive ? "filter-mobile-active" : ""
-      }`}
+      // We use different classes depending the screeWidth in order to
+      // place in different locations the filter
+      className={`${screenWidth < 920 ? "filter-mobile-c" : "filter-desktop-c"}
+            ${
+              // If we don't longer need the mobile filter and in case it's active
+              // we hide it removing the class that makes it visible
+              screenWidth < 920 && isFilterActive ? "filter-mobile-active" : ""
+            }`}
     >
+      {/* <div
+      className={`filter-mobile-c
+      ${isFilterActive ? "filter-mobile-active" : ""
+      }`}
+    > */}
       <div className="filter-mobile-c__header-c">
         <div className="header-c__title-c">
           <p>Filters</p>
@@ -98,47 +106,11 @@ export function FilterMobile({
       </div>
 
       <div className="dividing-line"></div>
-      {/* <a className="closeButtonSecondary" onClick={closeFilterPopupHandler}>
-        <svg className="all-svg-icons close-icon">
-          <use href={sprite + "#close"} />
-        </svg>
-      </a> */}
-      <CloseButton onClick={closeFilterPopupHandler} />
+
+      {
+        // it only needs to be visible when we show a mobile popup filter
+        screenWidth < 920 && <CloseButton onClick={closeFilterPopupHandler} />
+      }
     </div>
   );
-}
-
-export function FilterDesktop() {
-  return (
-    <div className="main-page-c__filters-c">
-      <div className="filters-c__header-c">
-        <div className="header-c__title">
-          <p>Filters</p>
-          <span>reset icon</span>
-        </div>
-
-        <a className="closeButtonPrimary" href="">
-          X
-        </a>
-      </div>
-
-      {/* TODO - generate each filter with map */}
-      <div className="filters-c__each-filter-c">
-        <div className="each-filter-c__title">
-          <p>Categories</p>
-          <span>Collapse icon</span>
-        </div>
-        <hr />
-        <div className="each-filter-c__categories-c">
-          {/* TODO - generate each actegory with map*/}
-          <div className="categories-c__each-category-c">
-            <p>frfrf</p>
-          </div>
-        </div>
-      </div>
-
-      <hr />
-      <a className="closeButtonSecondary" href=""></a>
-    </div>
-  );
-}
+};
