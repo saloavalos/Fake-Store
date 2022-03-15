@@ -10,6 +10,14 @@ The design of the entire project takes inspiration from many websites but primar
 • SASS
 • JavaScript
 • React
+• Redux
+
+#
+
+## A preview of the project
+
+![main-page](readme_assets/main-page.png "Main page")
+![product-details-page](readme_assets/product-details-page.png "Product details page")
 
 #
 
