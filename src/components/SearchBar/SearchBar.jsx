@@ -55,6 +55,7 @@ export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
   };
 
   return (
+    // <div className="search-bar-main-c">
     <div
       className={`search-bar-c ${isSearchBarActive ? "search-bar-active" : ""}`}
       // onClick={handleHideSearchBar}
@@ -75,5 +76,6 @@ export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
         <CloseButton onClick={handleHideSearchBar} />
       </div>
     </div>
+    // </div>
   );
 };

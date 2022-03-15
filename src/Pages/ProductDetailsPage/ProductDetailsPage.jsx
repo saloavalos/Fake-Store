@@ -46,7 +46,7 @@ export const ProductDetailsPage = () => {
   }, [product]);
 
   return (
-    <>
+    <div className="product-details-page-c">
       {isLoading ? (
         <div className="products-details-c skeleton">
           <div className="skeleton-products-details-c__image-c"></div>
@@ -66,64 +66,67 @@ export const ProductDetailsPage = () => {
         </div>
       ) : (
         <div className="products-details-c">
-          <div className="products-details-c__image-c">
-            <img src={product.image} alt="" />
-          </div>
-          <div className="product-details-main-info-c">
-            <p className="product-details-title">{product.title}</p>
-            {/* make the first letter of a string uppercase */}
-            <p className="product-details-category">
-              Category: {product.category}
-            </p>
-            <div className="product-details-ratings-c">
-              <div className="products-details-ratings__stars-c">
-                <svg
-                  className="all-svg-icons"
-                  // onClick={}
-                >
-                  <use href={sprite + "#star"} />
-                </svg>
-                <span>{product.rating?.rate}</span>
-              </div>
-              <a href="">({product.rating?.count} ratings)</a>
+          <div className="product-details-c__image-and-main-details-c">
+            <div className="products-details-c__image-c">
+              <img src={product.image} alt="" />
             </div>
-            <p className="product-details__price">${product.price}</p>
-            <div className="product-details__qty-add-to-cart-c">
-              <p className="product-details__qty-text">QTY:</p>
-              <div className="product-details__qty-input-add-to-cart-btn-c">
-                <div className="product-details__qty-input-c">
-                  <div className="qty-input-c__reduce">
-                    <svg
-                      className="all-svg-icons"
-                      // onClick={}
-                    >
-                      <use href={sprite + "#collapse"} />
-                    </svg>
-                  </div>
-                  <div className="qty-input-c__qty">1</div>
-                  <div className="qty-input-c__increase">
-                    <svg
-                      className="all-svg-icons"
-                      // onClick={}
-                    >
-                      <use href={sprite + "#plus"} />
-                    </svg>
-                  </div>
+            <div className="product-details-main-info-c">
+              <p className="product-details-title">{product.title}</p>
+              {/* make the first letter of a string uppercase */}
+              <p className="product-details-category">
+                Category: {product.category}
+              </p>
+              <div className="product-details-ratings-c">
+                <div className="products-details-ratings__stars-c">
+                  <svg
+                    className="all-svg-icons"
+                    // onClick={}
+                  >
+                    <use href={sprite + "#star"} />
+                  </svg>
+                  <span>{product.rating?.rate}</span>
                 </div>
-                <Button
-                  text={"Add to cart"}
-                  icon={"shopping-bag"}
-                  color={"white"}
-                />
+                <a href="">({product.rating?.count} ratings)</a>
+              </div>
+              <p className="product-details__price">${product.price}</p>
+              <div className="product-details__qty-add-to-cart-c">
+                <p className="product-details__qty-text">QTY:</p>
+                <div className="product-details__qty-input-add-to-cart-btn-c">
+                  <div className="product-details__qty-input-c">
+                    <div className="qty-input-c__reduce">
+                      <svg
+                        className="all-svg-icons"
+                        // onClick={}
+                      >
+                        <use href={sprite + "#collapse"} />
+                      </svg>
+                    </div>
+                    <div className="qty-input-c__qty">1</div>
+                    <div className="qty-input-c__increase">
+                      <svg
+                        className="all-svg-icons"
+                        // onClick={}
+                      >
+                        <use href={sprite + "#plus"} />
+                      </svg>
+                    </div>
+                  </div>
+                  <Button
+                    text={"Add to cart"}
+                    icon={"shopping-bag"}
+                    color={"white"}
+                  />
+                </div>
               </div>
             </div>
           </div>
+
           <div className="product-details__desc-c">
             <p className="product-details__desc-title">Description</p>
             <p className="product-details__desc-desc">{product.description}</p>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };

@@ -33,10 +33,18 @@
 .search-bar-input-and-close-c {
   padding: 1.2rem 1rem 0; // top edges bottom
   width: 100%;
+  max-width: 40rem;
   z-index: 99;
   display: flex;
   flex-direction: column;
   align-items: center;
+  // To see a animation of expansion when resizing the screen scren
+  // it is not necessary of course
+  transition: max-width 100ms ease-in;
+
+  @media (min-width: 920px) {
+    max-width: 60rem;
+  }
 }
 
 .search-bar-input-c {

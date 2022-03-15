@@ -1,33 +1,85 @@
 @use "/src/styles/colors";
 
+.product-details-page-c {
+  display: flex;
+  justify-content: center;
+}
+
 .products-details-c {
   padding: 1.2rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 720px) {
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 720px) and (orientation: landscape) {
+    width: 95%;
+    max-width: 70rem;
+  }
+
+  @media (min-width: 920px) {
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 920px) and (orientation: landscape) {
+    // max-width: 70rem;
+  }
+}
+
+.product-details-c__image-and-main-details-c {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+
+  @media (min-width: 720px) and (orientation: landscape) {
+    flex-direction: row;
+  }
 }
 
 .products-details-c__image-c {
   min-height: 10rem;
-  max-height: 11rem;
-  display: flex;
+  max-height: 12rem;
+  display: inline-flex;
   justify-content: center;
   margin-bottom: 1.2rem;
   background-color: white;
   border-radius: 8px;
   padding: 0.8rem 0.5rem;
 
+  @media (min-width: 420px) {
+    max-height: 14rem;
+  }
+
+  @media (min-width: 720px) {
+    max-height: 15rem;
+  }
+
+  @media (min-width: 720px) and (orientation: landscape) {
+    max-width: 45%;
+    margin-right: 2rem;
+  }
+
+  @media (min-width: 920px) and (orientation: landscape) {
+    max-width: 45%;
+    margin-right: 3rem;
+    max-height: 17rem;
+  }
+
   img {
     width: 100%;
-    // so that the image does not strecth too much
-    max-width: 10rem;
     object-fit: contain;
-    // To have all the images of the same size
-    max-height: 9rem;
   }
 }
 
 .product-details-main-info-c {
-  margin-bottom: 2.5rem;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+
+  @media (min-width: 720px) and (orientation: landscape) {
+    max-width: 50%;
+  }
 }
 
 .product-details-title {
@@ -106,6 +158,7 @@
     align-items: center;
     padding: 0.5rem;
     border-radius: 5px;
+    cursor: pointer;
   }
 
   .qty-input-c__qty {
@@ -116,6 +169,7 @@
 }
 
 .product-details__desc-c {
+  width: 100%;
 }
 
 .product-details__desc-title {
@@ -132,6 +186,7 @@
 // --- skeleton values - Begining
 // css that is shared through many elements
 .skeleton {
+  width: 100%;
   background-color: colors.$gray;
   animation: skeleton 1s ease infinite alternate;
 }
