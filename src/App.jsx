@@ -4,6 +4,7 @@ import { MainPage } from "./Pages/MainPage/MainPage";
 import { Routes, Route } from "react-router-dom";
 import { Error404Page } from "./Pages/Error404Page/Error404Page";
 import { ProductDetailsPage } from "./Pages/ProductDetailsPage/ProductDetailsPage";
+import Cart from "./Pages/Cart/Cart";
 
 function App() {
   // I will pass this value to the navbar to hide or show mobile menu
@@ -43,6 +44,7 @@ function App() {
           path="/products/:productName"
           element={<ProductDetailsPage />}
         />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
 

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./productDetailsPage.scss";
-import { Button } from "../../components/Buttons/Buttons";
+import Button from "../../components/Buttons/Buttons";
 import { useParams } from "react-router-dom";
 import sprite from "/sprite.svg";
+import { useNavigate } from "react-router-dom";
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState([]);
@@ -39,11 +40,10 @@ export const ProductDetailsPage = () => {
 
     // Reset scroll position on change of Routes
     window.scrollTo(0, 0);
-
-    // cleanup
-    // return () => {
-    // };
   }, [product]);
+
+  // To change the URL
+  let navigate = useNavigate();
 
   return (
     <div className="product-details-page-c">
@@ -115,6 +115,9 @@ export const ProductDetailsPage = () => {
                     text={"Add to cart"}
                     icon={"shopping-bag"}
                     color={"white"}
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
                   />
                 </div>
               </div>

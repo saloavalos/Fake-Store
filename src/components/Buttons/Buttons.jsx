@@ -1,4 +1,3 @@
-import { useState } from "react";
 import sprite from "/sprite.svg";
 import "./buttons.scss";
 
@@ -26,3 +25,4 @@ export const Button = ({ text, icon, color, onClick }) => {
     </a>
   );
 };
+export default Button;

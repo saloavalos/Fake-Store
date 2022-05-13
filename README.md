@@ -12,8 +12,6 @@ The design of the entire project takes inspiration from many websites but primar
 • React
 • Redux
 
-#
-
 ## A preview of the project
 
 ![main-page](readme_assets/main-page.png "Main page")
