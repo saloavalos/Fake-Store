@@ -3,6 +3,7 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import "./navbar.scss";
 // get whole sprite reference then we use the svg we need
 import sprite from "/sprite.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ screenWidth }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,12 +28,11 @@ const Navbar = ({ screenWidth }) => {
     };
   }, []);
 
-  // enable/disbale scroll when the mobile menu is active and
   // when the search bar is active
   useEffect(() => {
     showMenu || isSearchBarActive
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "unset");
+      ? document.body.classList.add("hide-scrollbar-on-mobile")
+      : document.body.classList.remove("hide-scrollbar-on-mobile");
   }, [showMenu, isSearchBarActive]);
 
   // If the width of the page is >= 992px then it means we are in a laptop or a wider screen
@@ -59,11 +59,11 @@ const Navbar = ({ screenWidth }) => {
       <nav className={isScrolledDown ? "navbar-shadow" : ""}>
         <div className="navbar-logo-and-sections-c">
           <div className="navbar-logo">
-            <a href="/">
+            <Link to="/">
               <svg>
                 <use href={sprite + "#logo"} />
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="navbar-sections">

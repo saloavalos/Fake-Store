@@ -30,7 +30,7 @@ because that impedes me to override its values with css -->
     <path d="M13.494 1.026a.565.565 0 0 1 1.012 0l3.689 7.472a.565.565 0 0 0 .424.309l8.25 1.206a.565.565 0 0 1 .312.963l-5.968 5.813a.565.565 0 0 0-.163.5L22.46 25.5a.565.565 0 0 1-.82.595l-7.376-3.879a.565.565 0 0 0-.526 0l-7.376 3.88a.565.565 0 0 1-.82-.596L6.95 17.29a.565.565 0 0 0-.163-.5L.82 10.976a.565.565 0 0 1 .312-.963l8.25-1.206a.565.565 0 0 0 .424-.309l3.689-7.472Z" fill="#FFCC49"></path>
   </symbol>
   <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" id="close">
-    <path d="M26 2 2 26M2 2l24 24" stroke="#181A18" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M26 2 2 26M2 2l24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
   </symbol>
   <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 28" id="collapse">
     <g clip-path="url(#a)">

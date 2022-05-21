@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "./productDetailsPage.scss";
 import Button from "../../components/Buttons/Buttons";
-import { useParams } from "react-router-dom";
 import sprite from "/sprite.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchAndAddToCart } from "../../redux/apiCalls";
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState([]);
@@ -12,13 +13,13 @@ export const ProductDetailsPage = () => {
   // To get passed value in the URL from the previous page
   // the name of the variable has to correspond
   // to the one defined in <Route path="/etc/:variable"
-  let { productName } = useParams();
+  let { productID } = useParams();
+
+  const dispatch = useDispatch();
 
   // Using the name of the product we get the rest of the info of the product
   const fetProductDetails = async () => {
-    const data = await fetch(
-      `https://fakestoreapi.com/products/${productName}`
-    );
+    const data = await fetch(`https://fakestoreapi.com/products/${productID}`);
 
     const product = await data.json();
 
@@ -27,23 +28,24 @@ export const ProductDetailsPage = () => {
   };
 
   useEffect(() => {
-    // Execute fetching
     fetProductDetails();
-
     // cleanup
     // return () => {
     // };
   }, []);
 
   useEffect(() => {
-    console.log(product);
-
     // Reset scroll position on change of Routes
     window.scrollTo(0, 0);
   }, [product]);
 
   // To change the URL
   let navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    fetchAndAddToCart(dispatch, productID);
+    navigate("/cart");
+  };
 
   return (
     <div className="product-details-page-c">
@@ -115,9 +117,7 @@ export const ProductDetailsPage = () => {
                     text={"Add to cart"}
                     icon={"shopping-bag"}
                     color={"white"}
-                    onClick={() => {
-                      navigate("/cart");
-                    }}
+                    onClick={handleAddToCart}
                   />
                 </div>
               </div>

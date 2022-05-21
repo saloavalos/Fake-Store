@@ -71,17 +71,6 @@ export const MainPage = ({ screenWidth }) => {
   }, [productsList]);
 
   useEffect(() => {
-    // commented because it is now done using redux
-    // fetch("https://fakestoreapi.com/products")
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     // console.log(json);
-    //     // We keep a original copy of all the products to use when the selected category is "All"
-    //     setProducts(json);
-    //     // and this filtered copy is used when we want to display products from any other category but "All"
-    //     setFilteredProducts(json);
-    //   });
-
     // We could skip this second fetch and use a .filter() method
     // to get all categories from the array of all the products
     fetch("https://fakestoreapi.com/products/categories")
@@ -89,19 +78,13 @@ export const MainPage = ({ screenWidth }) => {
       .then((json) => {
         // add default "All" category to categories
         setCategories(["all", ...json]);
-        // console.log(categories);
       });
   }, []);
 
   useEffect(() => {
-    // if(screenWidth >= 920) {
-
-    // }
-
-    // enable/disbale scroll when the filter popup is active
     isFilterActive
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "unset");
+      ? document.body.classList.add("hide-scrollbar-on-mobile")
+      : document.body.classList.remove("hide-scrollbar-on-mobile");
   }, [isFilterActive]);
 
   const showFilterHandler = () => {

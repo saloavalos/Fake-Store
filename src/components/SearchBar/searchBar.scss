@@ -12,6 +12,8 @@
   visibility: hidden;
   opacity: 0;
   transition: all 200ms ease-in;
+  // to cover and don't see division line behind
+  z-index: 99;
 }
 
 .search-bar-active {
@@ -19,9 +21,14 @@
   opacity: 1;
   // Show it from bottom to top
   transform: translateY(0%);
-  // to cover and don't see division line behind
-  z-index: 99;
 }
+
+// .search-bar-c.search-bar-active,
+// body {
+//   @media (max-width: 992px) {
+//     overflow: hidden;
+//   }
+// }
 
 .dim-search-bar {
   background-color: rgba(167, 167, 167, 0.644);
@@ -38,7 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // To see a animation of expansion when resizing the screen scren
+  // To see a animation of expansion when resizing the screen screen
   // it is not necessary of course
   transition: max-width 100ms ease-in;
 

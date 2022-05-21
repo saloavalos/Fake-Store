@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { CloseButton } from "../Buttons/Buttons";
 import sprite from "/sprite.svg";
 import "./searchBar.scss";
-// Redux
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchWord } from "../../redux/productsSlice";
+import { setSearchWord } from "../../redux/slices/productsSlice";
 
 export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
   // state that I will pass to the global state onClick to search

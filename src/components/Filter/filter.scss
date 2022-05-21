@@ -18,9 +18,6 @@
   opacity: 0;
   // TODO - Remove animation when I'm showing desktop filter and I switch to mobile filter
   transition: all 200ms ease-in;
-
-  @media (min-width: 920px) {
-  }
 }
 
 .filter-mobile-active {

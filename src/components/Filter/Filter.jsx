@@ -4,7 +4,7 @@ import "./filter.scss";
 import sprite from "/sprite.svg";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchWord } from "../../redux/productsSlice";
+import { setSearchWord } from "../../redux/slices/productsSlice";
 
 export const Filter = ({
   screenWidth,

@@ -5,10 +5,15 @@ import { Routes, Route } from "react-router-dom";
 import { Error404Page } from "./Pages/Error404Page/Error404Page";
 import { ProductDetailsPage } from "./Pages/ProductDetailsPage/ProductDetailsPage";
 import Cart from "./Pages/Cart/Cart";
+import "./app.scss";
+import { setAddToCartSuccess } from "./redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
   // I will pass this value to the navbar to hide or show mobile menu
   const [screenWidth, setScreenWidth] = useState(0);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // To get screen width when we reload the page or it´s the first time we open the website
@@ -17,8 +22,13 @@ function App() {
     const onResize = () => {
       setScreenWidth(window.innerWidth);
     };
-    // add onRsize listener
+    // add onResize listener
     window.addEventListener("resize", onResize);
+
+    if (localStorage.getItem("productsInCartBackup"))
+      dispatch(
+        setAddToCartSuccess(localStorage.getItem("productsInCartBackup"))
+      );
 
     // clean useEffect and remove listeners
     return () => {
@@ -29,25 +39,26 @@ function App() {
   return (
     <>
       <Navbar screenWidth={screenWidth} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <MainPage screenWidth={screenWidth} />
-            </>
-          }
-        />
-        <Route
-          //:name can be named anyway, but later using params
-          // has to correspond the name of the variable
-          path="/products/:productName"
-          element={<ProductDetailsPage />}
-        />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<Error404Page />} />
-      </Routes>
-
+      <div className="main-container-all-pages">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <MainPage screenWidth={screenWidth} />
+              </>
+            }
+          />
+          <Route
+            //:name can be named anyway, but later using params
+            // has to correspond the name of the variable
+            path="/products/:productID"
+            element={<ProductDetailsPage />}
+          />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<Error404Page />} />
+        </Routes>
+      </div>
       {/* TODO - add footer */}
     </>
   );

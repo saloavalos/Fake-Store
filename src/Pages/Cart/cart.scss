@@ -1,0 +1,32 @@
+@use "/src/styles/colors";
+
+.cart-main-c {
+  padding: 0 1rem;
+}
+
+.qty-and-delete-c {
+  display: flex;
+  align-items: center;
+}
+
+.cart-delete-item-c {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-delete-item-c {
+  padding: 0.5rem;
+  background-color: colors.$title;
+  border-radius: 5px;
+
+  svg {
+    stroke: white;
+  }
+}
+
+.each-product-in-cart-desc {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
