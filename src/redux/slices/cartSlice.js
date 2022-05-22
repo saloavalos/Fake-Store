@@ -37,10 +37,17 @@ const cartSlice = createSlice({
       state.error = false;
       state.pending = false;
     },
+    setRestoreCartProducts: (state, action) => {
+      state.productsInCart = action.payload;
+    },
   },
 });
 
-export const { setAddToCartStart, setAddToCartSuccess, setAddToCartError } =
-  cartSlice.actions;
+export const {
+  setAddToCartStart,
+  setAddToCartSuccess,
+  setAddToCartError,
+  setRestoreCartProducts,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

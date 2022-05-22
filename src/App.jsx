@@ -6,7 +6,7 @@ import { Error404Page } from "./Pages/Error404Page/Error404Page";
 import { ProductDetailsPage } from "./Pages/ProductDetailsPage/ProductDetailsPage";
 import Cart from "./Pages/Cart/Cart";
 import "./app.scss";
-import { setAddToCartSuccess } from "./redux/slices/cartSlice";
+import { setRestoreCartProducts } from "./redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 
 function App() {
@@ -25,10 +25,13 @@ function App() {
     // add onResize listener
     window.addEventListener("resize", onResize);
 
-    if (localStorage.getItem("productsInCartBackup"))
-      dispatch(
-        setAddToCartSuccess(localStorage.getItem("productsInCartBackup"))
+    if (localStorage.getItem("productsInCartBackup")) {
+      const dataRecovered = JSON.parse(
+        localStorage.getItem("productsInCartBackup")
       );
+      dispatch(setRestoreCartProducts(dataRecovered));
+      console.log(localStorage.getItem("productsInCartBackup"));
+    }
 
     // clean useEffect and remove listeners
     return () => {
