@@ -1,12 +1,54 @@
 @use "/src/styles/colors";
 
 .cart-main-c {
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
+
+  @media (min-width: 992px) {
+    padding: 1rem 1rem;
+  }
+}
+
+.cart-main__title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.75rem;
 }
 
 .qty-and-delete-c {
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
+}
+
+.each-product-in-cart-c {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.each-product-in-cart-img-c {
+  max-width: 7rem;
+  display: flex;
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.each-product-in-cart-info-c {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+
+  @media (min-width: 992px) {
+    margin-left: 1rem;
+  }
+
+  p,
+  span {
+    margin-bottom: 0.3rem;
+  }
 }
 
 .cart-delete-item-c {
@@ -26,7 +68,9 @@
 }
 
 .each-product-in-cart-desc {
+  display: -webkit-box;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }

@@ -30,7 +30,6 @@ function App() {
         localStorage.getItem("productsInCartBackup")
       );
       dispatch(setRestoreCartProducts(dataRecovered));
-      console.log(localStorage.getItem("productsInCartBackup"));
     }
 
     // clean useEffect and remove listeners

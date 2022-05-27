@@ -40,6 +40,33 @@ const cartSlice = createSlice({
     setRestoreCartProducts: (state, action) => {
       state.productsInCart = action.payload;
     },
+    setIncrementCartProductQuantity: (state, { payload: id }) => {
+      state.productsInCart.map((eachProduct, index) => {
+        if (eachProduct.id === id) {
+          state.productsInCart[index] = {
+            ...eachProduct,
+            quantity: eachProduct.quantity + 1,
+          };
+        }
+      });
+    },
+    setDecrementCartProductQuantity: (state, { payload: id }) => {
+      state.productsInCart.map((eachProduct, index) => {
+        if (eachProduct.id === id && eachProduct.quantity > 1) {
+          state.productsInCart[index] = {
+            ...eachProduct,
+            quantity: eachProduct.quantity - 1,
+          };
+        }
+      });
+    },
+    setDeleteProductFromCart: (state, { payload: id }) => {
+      state.productsInCart = state.productsInCart.filter((eachProduct) => {
+        if (eachProduct.id !== id) {
+          return eachProduct;
+        }
+      });
+    },
   },
 });
 
@@ -48,6 +75,9 @@ export const {
   setAddToCartSuccess,
   setAddToCartError,
   setRestoreCartProducts,
+  setIncrementCartProductQuantity,
+  setDecrementCartProductQuantity,
+  setDeleteProductFromCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
