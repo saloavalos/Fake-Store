@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import "./navbar.scss";
-// get whole sprite reference then we use the svg we need
 import sprite from "/sprite.svg";
 import { Link } from "react-router-dom";
 
@@ -55,7 +54,6 @@ const Navbar = ({ screenWidth }) => {
 
   return (
     <>
-      {/* // if we scroll down we add a shadow to navbar */}
       <nav className={isScrolledDown ? "navbar-shadow" : ""}>
         <div className="navbar-logo-and-sections-c">
           <div className="navbar-logo">
@@ -71,11 +69,11 @@ const Navbar = ({ screenWidth }) => {
             <svg className="all-svg-icons" onClick={showSearcBarHandler}>
               <use href={sprite + "#search"} />
             </svg>
-            <a href="/">
+            <Link to="/cart">
               <svg className="all-svg-icons">
                 <use href={sprite + "#shopping-cart"} />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 

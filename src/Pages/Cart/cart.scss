@@ -74,3 +74,31 @@
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+
+.cart-empty-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.cart-empty-c__img-c {
+  margin-top: 1.5rem;
+  max-width: 15rem;
+
+  img {
+    width: 100%;
+  }
+}
+
+.cart-empty-text {
+  font-size: 1.2rem;
+}
+
+.loading-c {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
