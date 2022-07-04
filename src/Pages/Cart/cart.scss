@@ -12,6 +12,7 @@
   text-align: center;
   font-weight: 700;
   font-size: 1.75rem;
+  margin: 2rem 0;
 }
 
 .qty-and-delete-c {
@@ -73,4 +74,40 @@
   overflow: hidden;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
+}
+
+.cart-main__products-and-order-summary-c {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.products-in-cart-c {
+  max-width: 40%;
+  margin-right: 4rem;
+}
+
+.order-summary-c {
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: colors.$title;
+  padding: 1.2rem;
+  width: 20%;
+  background-color: white;
+  height: 100%;
+}
+
+.divisor-line-order-summary {
+  background-color: colors.$deeperGray;
+  height: 2px;
+  border: none;
+  margin: 1rem 0;
+}
+
+.subtotal-c {
+  margin-top: 1.5rem;
+}
+
+.order-summary__btns-c {
+  display: flex;
+  flex-direction: column;
 }
