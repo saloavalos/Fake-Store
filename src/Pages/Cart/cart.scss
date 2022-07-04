@@ -76,6 +76,7 @@
   -webkit-box-orient: vertical;
 }
 
+<<<<<<< HEAD
 .cart-main__products-and-order-summary-c {
   display: inline-flex;
   justify-content: center;
@@ -111,3 +112,32 @@
   display: flex;
   flex-direction: column;
 }
+=======
+.cart-empty-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.cart-empty-c__img-c {
+  margin-top: 1.5rem;
+  max-width: 15rem;
+
+  img {
+    width: 100%;
+  }
+}
+
+.cart-empty-text {
+  font-size: 1.2rem;
+}
+
+.loading-c {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+>>>>>>> b23e6e75ebc2dd4f237d944028ed1fc25018d711
