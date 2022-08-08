@@ -8,6 +8,7 @@ import {
   setDecrementCartProductQuantity,
   setDeleteProductFromCart,
 } from "../../redux/slices/cartSlice";
+import { setRestoreCartProducts } from "../../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import nothingInCartSvg from "/src/assets/cart-empty.svg";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -26,11 +27,13 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.setItem(
-      "productsInCartBackup",
-      JSON.stringify(productsInCart)
-    );
-  }, [productsInCart]);
+    const products = localStorage.getItem("productsInCartBackup");
+    if (products && !productsInCart) {
+      console.log("restauro localstorage data");
+      // set productsInCart
+      dispatch(setRestoreCartProducts(products));
+    }
+  }, []);
 
   const handleImagesLoaded = () => {
     imagesLoadedCounter.current += 1;
@@ -44,18 +47,23 @@ const Cart = () => {
     console.log("isLoadingImages value: " + isLoadingImages);
   }, [isLoadingImages]);
 
+  const handleOrderSummaryDecision = (wantsToFinishOder) => {
+    if (wantsToFinishOder) {
+      // redirect to checkout page
+    } else {
+      // redirect to products page
+    }
+  };
+
   return (
     <div className="cart-main-c">
       <p className="cart-main__title">My shopping bag</p>
 
-      {isLoadingImages && isLoading && (
+      {/* {isLoading && (
         <div className="loading-c">
-          <SyncLoader loading={isLoadingImages} size={12} color={"#ff5b49"} />
+          <SyncLoader loading={isLoading} size={12} color={"#ff5b49"} />
         </div>
-        //   <div className="flex justify-center items-center h-[65vh]">
-        //   <SyncLoader loading={isLoading} size={12} color={"#ff5b49"} />
-        // </div>
-      )}
+      )} */}
 
       {!productsInCart.length && !isLoading && (
         <div
@@ -75,65 +83,93 @@ const Cart = () => {
         </div>
       )}
 
-      {productsInCart &&
-        productsInCart.map((eachProductInCart) => (
-          <div className="each-product-in-cart-c" key={eachProductInCart.id}>
-            <div className="each-product-in-cart-img-c">
-              <img src={eachProductInCart.image} alt="." />
-            </div>
-            <div className="each-product-in-cart-info-c">
-              <p>{eachProductInCart.title}</p>
-              <span className="main-text-c__price">
-                ${eachProductInCart.price}
-              </span>
-              <p className="each-product-in-cart-desc">
-                {eachProductInCart.description}
-              </p>
-            </div>
-            <div className="qty-and-delete-c">
-              <div className="product-details__qty-input-c">
+      {productsInCart.length > 0 && !isLoading && (
+        <>
+          {productsInCart.map((eachProductInCart) => (
+            <div className="each-product-in-cart-c" key={eachProductInCart.id}>
+              <div className="each-product-in-cart-img-c">
+                <img src={eachProductInCart.image} alt="." />
+              </div>
+              <div className="each-product-in-cart-info-c">
+                <p>{eachProductInCart.title}</p>
+                <span className="main-text-c__price">
+                  ${eachProductInCart.price}
+                </span>
+                <p className="each-product-in-cart-desc">
+                  {eachProductInCart.description}
+                </p>
+              </div>
+              <div className="qty-and-delete-c">
+                <div className="product-details__qty-input-c">
+                  <div
+                    className="qty-input-c__reduce"
+                    onClick={() =>
+                      dispatch(
+                        setDecrementCartProductQuantity(eachProductInCart.id)
+                      )
+                    }
+                  >
+                    <svg className="all-svg-icons">
+                      <use href={sprite + "#collapse"} />
+                    </svg>
+                  </div>
+                  <div className="qty-input-c__qty">
+                    {eachProductInCart.quantity}
+                  </div>
+                  <div
+                    className="qty-input-c__increase"
+                    onClick={() =>
+                      dispatch(
+                        setIncrementCartProductQuantity(eachProductInCart.id)
+                      )
+                    }
+                  >
+                    <svg className="all-svg-icons">
+                      <use href={sprite + "#plus"} />
+                    </svg>
+                  </div>
+                </div>
                 <div
-                  className="qty-input-c__reduce"
+                  className="cart-delete-item-c"
                   onClick={() =>
-                    dispatch(
-                      setDecrementCartProductQuantity(eachProductInCart.id)
-                    )
+                    dispatch(setDeleteProductFromCart(eachProductInCart.id))
                   }
                 >
                   <svg className="all-svg-icons">
-                    <use href={sprite + "#collapse"} />
-                  </svg>
-                </div>
-                <div className="qty-input-c__qty">
-                  {eachProductInCart.quantity}
-                </div>
-                <div
-                  className="qty-input-c__increase"
-                  onClick={() =>
-                    dispatch(
-                      setIncrementCartProductQuantity(eachProductInCart.id)
-                    )
-                  }
-                >
-                  <svg className="all-svg-icons">
-                    <use href={sprite + "#plus"} />
+                    <use href={sprite + "#close"} />
                   </svg>
                 </div>
               </div>
-              <div
-                className="cart-delete-item-c"
-                onClick={() =>
-                  dispatch(setDeleteProductFromCart(eachProductInCart.id))
-                }
-              >
-                <svg className="all-svg-icons">
-                  <use href={sprite + "#close"} />
-                </svg>
-              </div>
+              <hr />
             </div>
-            <hr />
+          ))}
+
+          <div className="">
+            <div>
+              <p>Order summary</p>
+              <p>1 article in my bag</p>
+            </div>
+            <div>
+              <p>TOTAL</p>
+              <p>$ 349.00</p>
+            </div>
+            <div className="order-summary__btns-c">
+              <Button
+                text={"Add to cart"}
+                icon={"shopping-bag"}
+                color={"white"}
+                onClick={handleOrderSummaryDecision(true)}
+              />
+              <Button
+                text={"Add to cart"}
+                icon={"shopping-bag"}
+                color={"white"}
+                onClick={handleOrderSummaryDecision()}
+              />
+            </div>
           </div>
-        ))}
+        </>
+      )}
     </div>
   );
 };

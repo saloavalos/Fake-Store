@@ -13,6 +13,7 @@ const cartSlice = createSlice({
     },
     setAddToCartSuccess: (state, action) => {
       state.pending = false;
+      state.error = false;
       // Check if product is already in bag
       if (
         state.productsInCart.some(
@@ -34,7 +35,7 @@ const cartSlice = createSlice({
       }
     },
     setAddToCartError: (state) => {
-      state.error = false;
+      state.error = true;
       state.pending = false;
     },
     setRestoreCartProducts: (state, action) => {

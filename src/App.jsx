@@ -7,7 +7,7 @@ import { ProductDetailsPage } from "./Pages/ProductDetailsPage/ProductDetailsPag
 import Cart from "./Pages/Cart/Cart";
 import "./app.scss";
 import { setRestoreCartProducts } from "./redux/slices/cartSlice";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
   // I will pass this value to the navbar to hide or show mobile menu
@@ -37,6 +37,21 @@ function App() {
       window.removeEventListener("resize", onResize);
     };
   }, []);
+
+  const {
+    productsInCart,
+    pending: isLoading,
+    error,
+  } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    if (productsInCart) {
+      localStorage.setItem(
+        "productsInCartBackup",
+        JSON.stringify(productsInCart)
+      );
+    }
+  }, [productsInCart]);
 
   return (
     <>
