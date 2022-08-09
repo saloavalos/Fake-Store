@@ -42,9 +42,13 @@ export const ProductDetailsPage = () => {
   // To change the URL
   let navigate = useNavigate();
 
-  const handleAddToCart = () => {
-    fetchAndAddToCart(dispatch, productID);
-    navigate("/cart");
+  const handleAddToCart = async () => {
+    const response = await fetchAndAddToCart(dispatch, productID);
+    if (response.canContinue) {
+      navigate("/cart");
+    } else {
+      alert("sth weird happened, try again later.");
+    }
   };
 
   return (

@@ -16,12 +16,13 @@ const productsSlice = createSlice({
     },
     setAllProductsSuccess: (state, action) => {
       state.pending = false;
+      state.error = false;
       // action.payload is the new data we will pass to a specific property of the state
       // if I specifiy a property of the state that doesn't exist it will be created and added to the state with is corresponding data
       state.productsList = action.payload;
     },
     setAllProductsError: (state) => {
-      state.error = false;
+      state.error = true;
       state.pending = false;
     },
     setSearchWord: (state, action) => {
