@@ -11,6 +11,7 @@ import {
 import { setRestoreCartProducts } from "../../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import nothingInCartSvg from "/src/assets/cart-empty.svg";
+import { useNavigate } from "react-router-dom";
 import SyncLoader from "react-spinners/SyncLoader";
 
 const Cart = () => {
@@ -25,6 +26,9 @@ const Cart = () => {
   } = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
+
+  // To change the URL
+  let navigate = useNavigate();
 
   useEffect(() => {
     const products = localStorage.getItem("productsInCartBackup");
@@ -48,10 +52,13 @@ const Cart = () => {
   }, [isLoadingImages]);
 
   const handleOrderSummaryDecision = (wantsToFinishOder) => {
+    window.scrollTo({ top: 0 });
     if (wantsToFinishOder) {
       // redirect to checkout page
+      // navigate("/checkout");
     } else {
       // redirect to products page
+      navigate("/");
     }
   };
 
@@ -84,91 +91,93 @@ const Cart = () => {
       )}
 
       {productsInCart.length > 0 && !isLoading && (
-        <>
-          {productsInCart.map((eachProductInCart) => (
-            <div className="each-product-in-cart-c" key={eachProductInCart.id}>
-              <div className="each-product-in-cart-img-c">
-                <img src={eachProductInCart.image} alt="." />
-              </div>
-              <div className="each-product-in-cart-info-c">
-                <p>{eachProductInCart.title}</p>
-                <span className="main-text-c__price">
-                  ${eachProductInCart.price}
-                </span>
-                <p className="each-product-in-cart-desc">
-                  {eachProductInCart.description}
-                </p>
-              </div>
-              <div className="qty-and-delete-c">
-                <div className="product-details__qty-input-c">
+        <div className="products-and-summary-c">
+          <div className="all-product-c">
+            {productsInCart.map((eachProductInCart) => (
+              <div
+                className="each-product-in-cart-c"
+                key={eachProductInCart.id}
+              >
+                <div className="each-product-in-cart-img-c">
+                  <img src={eachProductInCart.image} alt="." />
+                </div>
+                <div className="each-product-in-cart-info-c">
+                  <p>{eachProductInCart.title}</p>
+                  <span className="main-text-c__price">
+                    ${eachProductInCart.price}
+                  </span>
+                  <p className="each-product-in-cart-desc">
+                    {eachProductInCart.description}
+                  </p>
+                </div>
+                <div className="qty-and-delete-c">
+                  <div className="product-details__qty-input-c">
+                    <div
+                      className="qty-input-c__reduce"
+                      onClick={() =>
+                        dispatch(
+                          setDecrementCartProductQuantity(eachProductInCart.id)
+                        )
+                      }
+                    >
+                      <svg className="all-svg-icons">
+                        <use href={sprite + "#collapse"} />
+                      </svg>
+                    </div>
+                    <div className="qty-input-c__qty">
+                      {eachProductInCart.quantity}
+                    </div>
+                    <div
+                      className="qty-input-c__increase"
+                      onClick={() =>
+                        dispatch(
+                          setIncrementCartProductQuantity(eachProductInCart.id)
+                        )
+                      }
+                    >
+                      <svg className="all-svg-icons">
+                        <use href={sprite + "#plus"} />
+                      </svg>
+                    </div>
+                  </div>
                   <div
-                    className="qty-input-c__reduce"
+                    className="cart-delete-item-c"
                     onClick={() =>
-                      dispatch(
-                        setDecrementCartProductQuantity(eachProductInCart.id)
-                      )
+                      dispatch(setDeleteProductFromCart(eachProductInCart.id))
                     }
                   >
                     <svg className="all-svg-icons">
-                      <use href={sprite + "#collapse"} />
-                    </svg>
-                  </div>
-                  <div className="qty-input-c__qty">
-                    {eachProductInCart.quantity}
-                  </div>
-                  <div
-                    className="qty-input-c__increase"
-                    onClick={() =>
-                      dispatch(
-                        setIncrementCartProductQuantity(eachProductInCart.id)
-                      )
-                    }
-                  >
-                    <svg className="all-svg-icons">
-                      <use href={sprite + "#plus"} />
+                      <use href={sprite + "#close"} />
                     </svg>
                   </div>
                 </div>
-                <div
-                  className="cart-delete-item-c"
-                  onClick={() =>
-                    dispatch(setDeleteProductFromCart(eachProductInCart.id))
-                  }
-                >
-                  <svg className="all-svg-icons">
-                    <use href={sprite + "#close"} />
-                  </svg>
-                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          ))}
+            ))}
+          </div>
 
-          <div className="">
+          <div className="order-summary-c">
             <div>
               <p>Order summary</p>
               <p>1 article in my bag</p>
             </div>
             <div>
               <p>TOTAL</p>
-              <p>$ 349.00</p>
+              <p>$349.00</p>
             </div>
+            <hr />
             <div className="order-summary__btns-c">
               <Button
-                text={"Add to cart"}
-                icon={"shopping-bag"}
-                color={"white"}
-                onClick={handleOrderSummaryDecision(true)}
+                text={"Finish order"}
+                onClick={() => handleOrderSummaryDecision(true)}
               />
               <Button
-                text={"Add to cart"}
-                icon={"shopping-bag"}
-                color={"white"}
-                onClick={handleOrderSummaryDecision()}
+                text={"Keep buying"}
+                onClick={() => handleOrderSummaryDecision()}
               />
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

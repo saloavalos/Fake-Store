@@ -12,12 +12,16 @@
   text-align: center;
   font-weight: 700;
   font-size: 1.75rem;
-  margin: 2rem 0;
+  margin: 0.5rem 0;
 }
 
 .qty-and-delete-c {
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
+}
+
+.all-product-c {
   margin-bottom: 1rem;
 }
 
@@ -102,4 +106,30 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.products-and-summary-c {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-summary-c {
+  background: colors.$deeperGray;
+  border: 1px solid colors.$subtitle;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.order-summary__btns-c {
+  margin-top: 0.5rem;
+  a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &:first-of-type {
+      margin-bottom: 0.5rem;
+      background-color: colors.$title;
+    }
+  }
 }

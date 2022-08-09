@@ -15,9 +15,11 @@ export const CloseButton = ({ onClick }) => {
 export const Button = ({ text, icon, color, onClick }) => {
   return (
     <a className="btn-global" onClick={onClick}>
-      <svg className="all-svg-icons" style={{ stroke: color }}>
-        <use href={sprite + `#${icon}`} />
-      </svg>
+      {icon && (
+        <svg className="all-svg-icons" style={{ stroke: color }}>
+          <use href={sprite + `#${icon}`} />
+        </svg>
+      )}
       {text}
     </a>
   );
