@@ -92,7 +92,7 @@ const Cart = () => {
 
       {productsInCart.length > 0 && !isLoading && (
         <div className="products-and-summary-c">
-          <div className="all-product-c">
+          <div className="all-products-c">
             {productsInCart.map((eachProductInCart) => (
               <div
                 className="each-product-in-cart-c"
@@ -157,11 +157,11 @@ const Cart = () => {
           </div>
 
           <div className="order-summary-c">
-            <div>
+            <div className="order-summary-products-amount-c">
               <p>Order summary</p>
-              <p>1 article in my bag</p>
+              <span>1 article in my bag</span>
             </div>
-            <div>
+            <div className="order-summary__total-c">
               <p>TOTAL</p>
               <p>$349.00</p>
             </div>
