@@ -56,7 +56,6 @@ export const SearchBar = ({ isSearchBarActive, setIsSearchBarActive }) => {
   return (
     <div
       className={`search-bar-c ${isSearchBarActive ? "search-bar-active" : ""}`}
-      // onClick={handleHideSearchBar}
     >
       <div className="dim-search-bar" onClick={handleHideSearchBar}></div>
       <div className="search-bar-input-and-close-c">
